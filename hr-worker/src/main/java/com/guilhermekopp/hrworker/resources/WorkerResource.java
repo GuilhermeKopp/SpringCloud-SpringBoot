@@ -1,5 +1,4 @@
 package com.guilhermekopp.hrworker.resources;
-
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -30,30 +29,31 @@ public class WorkerResource {
 	private WorkerRepository repository;
 	
 	@GetMapping(value = "/configs")
-	public ResponseEntity<Void> getConfigs(){
+	public ResponseEntity<Void> getConfigs() {
 		//logger.info("CONFIG = " + testConfig);
 		return ResponseEntity.noContent().build();
-	}
+	}		
 	
 	@GetMapping
-	public ResponseEntity<List<Worker>> findAll(){
+	public ResponseEntity<List<Worker>> findAll() {
 		List<Worker> list = repository.findAll();
 		return ResponseEntity.ok(list);
-	}
+	}	
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Worker> findById(@PathVariable Long id){
-	    /*
+	public ResponseEntity<Worker> findById(@PathVariable Long id) {
+		
+		/*
 		try {
 			Thread.sleep(3000L);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		*/
-  	    
-		logger.info("PORT = "+ env.getProperty("local.server.port"));
+		
+		logger.info("PORT = " + env.getProperty("local.server.port"));
 		
 		Worker obj = repository.findById(id).get();
 		return ResponseEntity.ok(obj);
-	}
+	}	
 }
